@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+</head>
+<body>
+    <button onclick="sortList()">Clasificar Arreglo</button> 
+    <ul id="par">
+        <strong>Pares</strong>
+    </ul>
+    <ul id="impar">
+        <strong>Impares</strong>
+    </ul>
+    <ul id="string">
+        <strong>Strings</strong>
+    </ul>
+    <script>
+        var arr = [1,'dos','tres',4,5,6,'siete',8,9,'diez'];
+        var par = document.getElementById("par");
+        var impar = document.getElementById("impar");
+        var string = document.getElementById("string");
+        var sortList = function() {
+          arr.map(function(x){
+          var element = document.createElement("li");
+          var node = document.createTextNode(x);
+          if (typeof x === "number" && (x % 2 == 0)) {
+            element.appendChild(node);
+            par.appendChild(element);
+          } else if (typeof x === "number" && (x % 2 != 0) ) {
+            element.appendChild(node);
+            impar.appendChild(element);
+          } else {
+            element.appendChild(node);
+            string.appendChild(element);
+          }
+          });
+        };
+    </script>
+</body>
+</html>

@@ -25,10 +25,6 @@
     <ol class="done" id="done">
       <h3>Done:</h3>
     </ol>
-
-    <input type="number" min="1" max="10" id="finishTask">
-    <button onclick="completeTask()">Finish</button>
-
     <script>
       var asdf = [{
           "completed":false,
@@ -81,21 +77,31 @@
           "id":10,
           "title":"Illo est ratione doloremque quia maiores aut",
         }];
-        var todo = document.getElementById("todo");
-        var done = document.getElementById("done");
-        var dones = [];
-        var todos = [];
         asdf.map(function(x){
           var element = document.createElement("li");
           var node = document.createTextNode(x.title);
+          element.appendChild(node)
+          
+          var button = document.createElement("button");
+          button.onclick = function completeTask() {
+            if(x.completed == false){
+              x.completed == true;
+              var list = document.getElementById("done");
+              list.appendChild(element);
+              list = document.getElementById("todo");
+              list.removeChild(button);
+            }
+          }
+
           if (x.completed == true) {
-            element.appendChild(node);
-            done.appendChild(element);
-            dones.push(x);
+            var list = document.getElementById("done");
+            list.appendChild(element);
           } else {
-            element.appendChild(node);
-            todo.appendChild(element);
-            todos.push(x);
+            var list = document.getElementById("todo");
+            list.appendChild(element);
+            var button_text = document.createTextNode("Finish");
+            button.appendChild(button_text);
+            list.appendChild(button);
           }
         });
     </script>
